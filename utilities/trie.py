@@ -78,8 +78,8 @@ def test():
         trie.add_word(i)
     print()
 
-    #Test 1 : check the structure generation
-    #trie.checker()
+    # Test 1 : check the structure generation
+    # trie.checker()
 
     #Test 2 :
     print('Enter the term to generate autocomplete suggestions for')
