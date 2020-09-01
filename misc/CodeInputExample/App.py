@@ -10,7 +10,8 @@ from kivy.uix.relativelayout import RelativeLayout
 class CodeSection(RelativeLayout):
     def __init__(self, **kwargs):
         super(CodeSection, self).__init__(**kwargs)
-        self.add_widget(CodeInput(lexer = PythonLexer()))
+        self.section = CodeInput(lexer = PythonLexer())
+        self.add_widget(self.section)
 
 class UpperSection(RelativeLayout):
     def __init__(self, **kwargs):
@@ -39,13 +40,13 @@ class MainLayout(BoxLayout):
 
     def change_lexer(self, spinner, text):
         if text=='Kivy':
-            self.c.lexer = KivyLexer(tabsize = 4)
+            self.c.section.lexer = KivyLexer(tabsize = 4)
         elif text=='Python':
-            self.c.lexer = PythonLexer(tabsize = 4)
+            self.c.section.lexer = PythonLexer(tabsize = 4)
         elif text=='Java':
-            self.c.lexer = JavaLexer(tabsize = 4)
+            self.c.section.lexer = JavaLexer(tabsize = 4)
         elif text=='C++':
-            self.c.lexer = CppLexer(tabsize=4)
+            self.c.section.lexer = CppLexer(tabsize=4)
 
     def setup(self):
         self.u.spinner.bind(text=self.change_lexer)
