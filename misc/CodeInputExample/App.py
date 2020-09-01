@@ -10,19 +10,19 @@ from kivy.uix.relativelayout import RelativeLayout
 class CodeSection(RelativeLayout):
     def __init__(self, **kwargs):
         super(CodeSection, self).__init__(**kwargs)
-        self.add_widget(CodeInput(lexer = KivyLexer()))
+        self.add_widget(CodeInput(lexer = PythonLexer()))
 
 class UpperSection(RelativeLayout):
     def __init__(self, **kwargs):
         super(UpperSection, self).__init__(**kwargs)
 
-        spinner = Spinner(
-                text = 'Some Lexers',
-                values = ('Some Lexers', 'Python', 'Java', 'C++'),
+        self.spinner = Spinner(
+                text = 'Python',
+                values = ('Kivy', 'Python', 'Java', 'C++'),
                 size_hint = (None, None),
                 size = (100,40),
                 pos_hint={'center_x': .5, 'center_y': .5})
-        self.add_widget(spinner)
+        self.add_widget(self.spinner)
 
         self.pos_hint = {'x':0, 'y':0}
         self.size_hint = (1,0.1)
@@ -31,8 +31,24 @@ class MainLayout(BoxLayout):
     def __init__(self, **kwargs):
         super(MainLayout, self).__init__(**kwargs)
         self.orientation = 'vertical'
-        self.add_widget(UpperSection())
-        self.add_widget(CodeSection())
+        self.u = UpperSection()
+        self.c = CodeSection()
+        self.add_widget(self.u)
+        self.add_widget(self.c)
+        self.setup()
+
+    def change_lexer(self, spinner, text):
+        if text=='Kivy':
+            self.c.lexer = KivyLexer(tabsize = 4)
+        elif text=='Python':
+            self.c.lexer = PythonLexer(tabsize = 4)
+        elif text=='Java':
+            self.c.lexer = JavaLexer(tabsize = 4)
+        elif text=='C++':
+            self.c.lexer = CppLexer(tabsize=4)
+
+    def setup(self):
+        self.u.spinner.bind(text=self.change_lexer)
 
 class MainApp(App):
     def build(self):
