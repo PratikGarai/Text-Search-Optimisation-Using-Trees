@@ -2,7 +2,7 @@ from kivy.app import App
 from kivy.uix.codeinput import CodeInput
 from kivy.extras.highlight import KivyLexer
 from pygments.lexers import *
-from kivy.uix.dropdown import DropDown
+from kivy.uix.spinner import Spinner
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.relativelayout import RelativeLayout
@@ -16,17 +16,13 @@ class UpperSection(RelativeLayout):
     def __init__(self, **kwargs):
         super(UpperSection, self).__init__(**kwargs)
 
-        dropdown = DropDown()
-        dropdown.add_widget(Button(text="1" , size_hint_y=None , height=20))
-        dropdown.add_widget(Button(text="2" , size_hint_y=None , height=20))
-        dropdown.add_widget(Button(text="3" , size_hint_y=None , height=20))
-        dropdown.add_widget(Button(text="4" , size_hint_y=None , height=20))
-
-        MainButton = Button(text = "Open Dropdown")
-        MainButton.bind(on_release = dropdown.open)
-        
-        self.add_widget(MainButton)
-        self.add_widget(dropdown)
+        spinner = Spinner(
+                text = 'Some Lexers',
+                values = ('Some Lexers', 'Python', 'Java', 'C++'),
+                size_hint = (None, None),
+                size = (100,40),
+                pos_hint={'center_x': .5, 'center_y': .5})
+        self.add_widget(spinner)
 
         self.pos_hint = {'x':0, 'y':0}
         self.size_hint = (1,0.1)
