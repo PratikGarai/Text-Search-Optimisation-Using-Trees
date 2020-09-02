@@ -47,9 +47,9 @@ class Trie:
         current = self.head
         for index,i in enumerate(word) :
             if not current.check_succeessor(i):
-                current.add_successor(i, index+1, address_begin)
+                current.add_successor(i, index+1, (address_begin[0], address_begin[1]+index+1))
             else :
-                current.add_address(address_begin)
+                current.add_address((address_begin[0], address_begin[1]+index))
             current = current.get_successor(i)
         current.set_as_ending()
         print(word,"\t\t\t added")
@@ -74,7 +74,7 @@ class Trie:
     def highlight(self, string):
         current = self.head
         for i in string:
-            current.get_successor(i)
+            current = current.get_successor(i)
             if not current:
                 return []
         return current.get_highlightings()
@@ -98,9 +98,8 @@ def test(choice):
     print(text)
     ptr = 0
     for i in text.strip().split() :
-        ptr += len(i)
         trie.add_word(i,(0,ptr))     # 0th line and ptr th character
-        ptr += 1
+        ptr += len(i)+1
     print()
 
     if choice==1:
