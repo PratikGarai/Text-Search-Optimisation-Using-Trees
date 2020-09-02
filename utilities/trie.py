@@ -4,7 +4,7 @@ class Alphabet:
     def __init__(self, data, level, address_end):
         self.data = data
         self.successors = {}
-        self.level = 0
+        self.level = level
         self.ending = False
         self.end_pos = [address_end]
 
