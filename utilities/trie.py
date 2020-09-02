@@ -41,15 +41,15 @@ class Alphabet:
 
 class Trie:
     def __init__(self):
-        self.head = Alphabet('',0)
+        self.head = Alphabet('',0,(0,0))
     
     def add_word(self, word, address_begin):
         current = self.head
         for index,i in enumerate(word) :
             if not current.check_succeessor(i):
-                current.add_successor(i, index+1, address_begin+index+1)
+                current.add_successor(i, index+1, address_begin)
             else :
-                current.add_address(address_begin+index+1)
+                current.add_address(address_begin)
             current = current.get_successor(i)
         current.set_as_ending()
         print(word,"\t\t\t added")
@@ -92,31 +92,48 @@ class Trie:
 
 
 #testing function
-def test():
+def test(choice):
     trie = Trie()
     text = "Hello Halo Helo My Mine Type Typ Typo"
     print(text)
+    ptr = 0
     for i in text.strip().split() :
-        trie.add_word(i)
+        ptr += len(i)
+        trie.add_word(i,(0,ptr))     # 0th line and ptr th character
+        ptr += 1
     print()
 
-    # Test 1 : check the structure generation
-    # trie.checker()
+    if choice==1:
+        # Test 1 : check the structure generation
+        trie.checker()
+        return
 
-    #Test 2 :  check the autocomplete generation
-    # print('Enter the term to generate autocomplete suggestions for')
-    # st = input()
-    # sug = trie.get_suggestions(st)
-    # if sug==[]:
-    #     print("No valid suggestions")
-    #     return
-    # for index,i in enumerate(sug.items()):
-    #     print(index,'\t',i[0],'\t',i[1])
+    if choice==2:
+        #Test 2 :  check the autocomplete generation
+        print('Enter the term to generate autocomplete suggestions for')
+        st = input()
+        sug = trie.get_suggestions(st)
+        if sug==[]:
+            print("No valid suggestions")
+            return
+        for index,i in enumerate(sug.items()):
+            print(index,'\t',i[0],'\t',i[1])
 
-    #Test 3:
+    if choice==3:
+        #Test 3:  check for highlight generation
+        print('Enter the pattern to search positions for')
+        pt = input()
+        positions = trie.highlight(pt)
+        print()
+        if positions==[]:
+            print('No valid suggestions found')
+            return
+        for i in positions :
+            print(i[0],'\t',i[1],'\t',i[2])
+        return
 
 def main():
     pass
 
 if __name__=='__main__':
-    test()
+    test(3)
