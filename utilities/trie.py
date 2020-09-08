@@ -135,4 +135,4 @@ def main():
     pass
 
 if __name__=='__main__':
-    test(3)
+    test(2)
