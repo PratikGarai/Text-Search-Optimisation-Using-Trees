@@ -1,20 +1,39 @@
 class Word():
 
-    def __init__(self, word):
-        self.content = []
-        self.number = None
-        self.address_begin = None
-        self.address_end = None
+    def __init__(self, word, number, begin, length):
+        self.content = word
+        self.number = number
+        self.address_begin = begin
+        self.address_end = begin+length
+
+    def printAll(self):
+        print(self.number, self.begin, self.end, self.content, sep="  ") 
 
 
 class Sentence():
 
-    def __init__(self, sentence):
+    def __init__(self, sentence, number):
         self.words = []
-        self.number = None
+        self.number = number
+        count = 0
+        for num, i in enumerate(sentence.split()):
+            l = len(i)
+            self.words.append(Word(i, num, count , l ))
+            count += l+1
+
+    def printAll(self):
+        print(self.number, end="  ")
+        for i in self.words:
+            i.printAll()
 
 
 class FullText():
 
     def __init__(self, text):
         self.sentences = []
+        for num,i in enumerate(text.split("\n")):
+            self.sentences.append(Sentence(i, num))
+
+    def printAll(self):
+        for i in self.sentences :
+            i.printAll()
