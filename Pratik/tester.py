@@ -12,6 +12,7 @@ def main():
     print("S.no.\tW.no.\tBeg.\tEnd\tContent")
     ob_text.printAll()
     print("\n Now analysing the generated \n")
+    ob_trie.printAll()
 
 if __name__=='__main__':
     main()

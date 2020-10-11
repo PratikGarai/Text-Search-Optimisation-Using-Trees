@@ -36,4 +36,10 @@ class Trie():
 
     def printAll(self):
         print("\nAll stuff of trie printed\n")
+        print("Level\tAlpha\tEnd\tN_end\tChildren")
         alphabets = [self.head]
+        while(alphabets!=[]):
+            current = alphabets.pop(0)
+            print(current.level, current.alphabet, current.is_ending, len(current.addresses), current.children.keys(), sep="\t")
+            alphabets.extend(current.children.values())
+        print()
