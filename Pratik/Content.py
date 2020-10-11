@@ -7,7 +7,7 @@ class Word():
         self.address_end = begin+length
 
     def printAll(self):
-        print(self.number, self.begin, self.end, self.content, sep="  ") 
+        print(self.number, self.address_begin, self.address_end, self.content, sep="\t") 
 
 
 class Sentence():
@@ -22,8 +22,8 @@ class Sentence():
             count += l+1
 
     def printAll(self):
-        print(self.number, end="  ")
         for i in self.words:
+            print(self.number, end="\t")
             i.printAll()
 
 
