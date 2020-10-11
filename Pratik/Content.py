@@ -1,7 +1,10 @@
-class FullText():
+class Word():
 
-    def __init__(self, text):
-        self.sentences = []
+    def __init__(self, word):
+        self.content = []
+        self.number = None
+        self.address_begin = None
+        self.address_end = None
 
 
 class Sentence():
@@ -11,10 +14,7 @@ class Sentence():
         self.number = None
 
 
-class Word():
+class FullText():
 
-    def __init__(self, word):
-        self.content = []
-        self.number = None
-        self.address_begin = None
-        self.address_end = None
+    def __init__(self, text):
+        self.sentences = []
