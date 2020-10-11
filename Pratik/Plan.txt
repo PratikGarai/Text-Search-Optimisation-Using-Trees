@@ -7,7 +7,6 @@ There will be 2 major classes with hierarchies.
 	- Location in terms in line number and alphabet number
 
 	Classes :
-
 		FullText : Will represent the whole document.
 		   |
 		   -----> Sentence :  Will represent a single sentence of the document.
@@ -25,5 +24,3 @@ There will be 2 major classes with hierarchies.
 		Trie  : Obviously, the main tree structure.
 		  |
 		  -----> Alphabet : Will represent a single alphabet.
-
-

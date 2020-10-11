@@ -10,8 +10,8 @@ class Alphabet():
     def moveToChild(self, character):
         try :
             return self.children[character]
-        else :
-            self.children.[character] = Alphabet(character, self.level+1)
+        except :
+            self.children[character] = Alphabet(character, self.level+1)
             return self.children[character]
 
     def setEnding(self):
@@ -24,11 +24,16 @@ class Alphabet():
 class Trie():
 
     def __init__(self):
-        self.head = Alphabet('', 0, False)
+        self.head = Alphabet('', 0)
 
     def add(self, word, word_pointer):
+        print("Adding : ",word,"...")
         current = self.head
         for i in word :
             current = current.moveToChild(i)
         current.setEnding()
         current.addAddress(word_pointer)
+
+    def printAll(self):
+        print("\nAll stuff of trie printed\n")
+        alphabets = [self.head]
