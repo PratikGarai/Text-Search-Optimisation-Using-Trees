@@ -41,10 +41,13 @@ class Trie():
                 current = current.children[i]
             except :
                 return (False,[])
-        return (True, len(current.addresses))
+        return (True, len(current.addresses), current.addresses)
 
     def getAutoCompleteSuggestions(self, word):
-        pass
+        res = self.findLocations(word)
+        if not res[0]:
+            return []
+        addresses = res[2]
 
     def printAll(self):
         print("\nAll stuff of trie printed\n")

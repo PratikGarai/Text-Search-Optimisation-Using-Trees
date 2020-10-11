@@ -1,0 +1,24 @@
+Content :
+	Word :
+		content 		: String
+		number 			: Integer
+		address_begin 		: Integer
+		address_end 		: Integer
+	Sentence :
+		words 			: Vector of "Word"
+		number 			: Integer
+	Fulltext :
+		TRIE_OBJ 		: Trie
+		sentences 		: Vector of "Trie"
+
+Trie :
+	Alphabet :
+		alphabet 		: Character
+		children 		: Hash-map of <Character -> "Alphabet" Node>
+		is_ending 		: Boolean
+		level 			: Integer
+		addresses 		: Vector of "Word"
+	Trie:
+		head 			: "Alphabet" node containg null character
+
+**  words in ""(quotes) represent classes
