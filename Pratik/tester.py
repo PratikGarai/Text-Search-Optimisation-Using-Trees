@@ -33,5 +33,17 @@ def main():
         else:
             print("Node doesn't even exist")
 
+    print("Number of autocomplete queries : ", end = "")
+    n = int(input())
+    for i in range(n):
+        print("Query",(i+1),": ", end="")
+        q = input()
+        res = ob_trie.getAutoCompleteSuggestions(q)
+        if res!=[]:
+            print("Suggestions ", res)
+        else:
+            print("No suggestions")
+
+
 if __name__=='__main__':
     main()
