@@ -34,6 +34,18 @@ class Trie():
         current.setEnding()
         current.addAddress(word_pointer)
 
+    def findLocations(self, word):
+        current = self.head
+        for i in word:
+            try : 
+                current = current.children[i]
+            except :
+                return (False,[])
+        return (True, len(current.addresses))
+
+    def getAutoCompleteSuggestions(self, word):
+        pass
+
     def printAll(self):
         print("\nAll stuff of trie printed\n")
         print("Level\tAlpha\tEnd\tN_end\tChildren")
