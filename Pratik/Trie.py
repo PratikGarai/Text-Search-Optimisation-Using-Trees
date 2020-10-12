@@ -40,7 +40,7 @@ class Trie():
             try : 
                 current = current.children[i]
             except :
-                return (False,[])
+                return (False,[], None)
         return (True, len(current.addresses), current)
 
     def getAutoCompleteSuggestions(self, word):

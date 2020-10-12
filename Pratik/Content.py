@@ -34,6 +34,18 @@ class FullText():
         for num,i in enumerate(text.split("\n")):
             self.sentences.append(self.Sentence(i, num, self.TRIE_OBJ))
 
+    def addSentence(self, text, index):
+        self.sentences = self.sentences[:index]+[self.Sentence(text, index, self.TRIE_OBJ)] + self.sentences[index:]
+        for i in self.sentences[i:]:
+            i.number += 1
+
+    def getByLocation(self, s_index, w_index):
+        try :
+            return self.sentences[s_index].words[w_index]
+        except :
+            print("Index out of bounds")
+            return None
+
     def printAll(self):
         for i in self.sentences :
             i.printAll()
