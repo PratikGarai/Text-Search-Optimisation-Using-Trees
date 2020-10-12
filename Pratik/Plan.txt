@@ -24,3 +24,9 @@ There will be 2 major classes with hierarchies.
 		Trie  : Obviously, the main tree structure.
 		  |
 		  -----> Alphabet : Will represent a single alphabet.
+
+3. The Document
+	This will serve as the main API to the entire system.
+	- Content 
+	- Trie
+	The program will interact with this one object and carry out it's operations.
