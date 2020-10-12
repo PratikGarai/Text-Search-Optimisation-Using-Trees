@@ -5,7 +5,7 @@ class Document():
 
     def __init__(self, text):
         self.ob_trie = Trie()
-        self.ob_text = FullText(text, ob_trie)
+        self.ob_text = FullText(text, self.ob_trie)
 
 
     def printAllContent(self):
@@ -17,10 +17,10 @@ class Document():
 
 
     def search(self, word):
-        res = ob_trie.findLocations(word)
+        res = self.ob_trie.findLocations(word)
         return res
 
 
     def suggestions(self, substring):
-        res = ob_trie.getAutoCompleteSuggestions(substring)
+        res = self.ob_trie.getAutoCompleteSuggestions(substring)
         return res

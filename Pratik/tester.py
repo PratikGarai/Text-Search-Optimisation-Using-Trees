@@ -1,25 +1,25 @@
 from Content import FullText
 from Trie import Trie
-
+from Document import Document
 
 def main():
 
     # declarations of the structures
-    ob_text = None
-    ob_trie = Trie()
+    doc = None
 
     # reading an inputing the file
     with open("test.txt", "r") as t:
         text = t.read()
         print(text)
-        ob_text = FullText(text, ob_trie)
+        # ob_text = FullText(text, ob_trie)
+        doc = Document(text)
 
     # validation of structure construction
     print("\n Text Added! Now launching printAll() \n")
     print("S.no.\tW.no.\tBeg.\tEnd\tContent")
-    ob_text.printAll()
+    doc.printAllContent()
     print("\n Now analysing the generated \n")
-    ob_trie.printAll()
+    doc.printAllTrie()
 
     # validation of structure functionality
     print("Number of search queries : ", end = "")
@@ -27,7 +27,7 @@ def main():
     for i in range(n):
         print("Query",(i+1),": ", end="")
         q = input()
-        res = ob_trie.findLocations(q)
+        res = doc.search(q)
         if res[0]:
             print("Node exists . Number of ending : ", res[1])
         else:
@@ -38,7 +38,7 @@ def main():
     for i in range(n):
         print("Query",(i+1),": ", end="")
         q = input()
-        res = ob_trie.getAutoCompleteSuggestions(q)
+        res = doc.suggestions(q)
         if res!=[]:
             print("Suggestions ", res)
         else:
