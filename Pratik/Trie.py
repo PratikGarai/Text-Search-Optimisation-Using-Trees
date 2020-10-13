@@ -31,7 +31,7 @@ class Trie():
         current = self.head
         for i in word :
             current = current.moveToChild(i)
-            current.addAddress(word_pointer)
+        current.addAddress(word_pointer)
         current.setEnding()
 
     def findLocations(self, word):
@@ -41,7 +41,7 @@ class Trie():
                 current = current.children[i]
             except :
                 return (False,[], None)
-        return (True, current.addresses, current)
+        return (True, self.get_terminals(current), current)
 
     def getAutoCompleteSuggestions(self, word):
         res = self.findLocations(word)
@@ -55,6 +55,22 @@ class Trie():
                 suggestions.append(node.addresses[0].content)
             nodes.extend(node.children.values())
         return suggestions
+
+    def get_terminals(self, ob):
+        if ob.is_ending:
+            terminals = [ob]
+        else :
+            terminals = []
+        nodes = [ob]
+        while(nodes!=[]):
+            curr = nodes.pop(0)
+            children = curr.children.values()
+            terminals.extend(list(filter(lambda x : x.is_ending, children)))
+            nodes.extend(children)
+        terminals_addresses = []
+        for i in terminals:
+            terminals_addresses.extend(i.addresses)
+        return terminals_addresses
 
     def printAll(self):
         print("\nAll stuff of trie printed\n")

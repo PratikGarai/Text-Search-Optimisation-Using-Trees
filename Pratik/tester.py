@@ -92,7 +92,7 @@ def test(f_name, s_queries, a_queries):
         print("Time : ",(h-g)/10**9,"s")
 
     # for the purpose of storage comparison
-    return [lin, doc]
+    # return [lin, doc]
 
 class Test():
     def __init__(self, name, file_name, s_queries, a_queries):
@@ -104,7 +104,8 @@ class Test():
 
     def conduct(self):
         print("\n--------------------------------\n",self.name,"\n--------------------------------")
-        self.objs = test(self.file_name, self.s_queries, self.a_queries)
+        # self.objs = test(self.file_name, self.s_queries, self.a_queries)
+        test(self.file_name, self.s_queries, self.a_queries)
         print("\n--------------------------------\n")
 
 if __name__=='__main__':
