@@ -27,7 +27,7 @@ class Trie():
         self.head = Alphabet('', 0)
 
     def add(self, word, word_pointer):
-        print("Adding : ",word,"...")
+        # print("Adding : ",word,"...")
         current = self.head
         for i in word :
             current = current.moveToChild(i)
