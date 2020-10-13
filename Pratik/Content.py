@@ -4,11 +4,12 @@ class FullText():
 
         class Word():
 
-            def __init__(self, word, number, begin, length, TRIE_OBJ):
+            def __init__(self, word, number, begin, length, s_number, TRIE_OBJ):
                 self.content = word
                 self.number = number
                 self.address_begin = begin
                 self.address_end = begin+length
+                self.s_number = s_number
                 TRIE_OBJ.add(word, self)
 
             def printAll(self):
@@ -20,7 +21,7 @@ class FullText():
             count = 0
             for num, i in enumerate(sentence.split()):
                 l = len(i)
-                self.words.append(self.Word(i, num, count , l, TRIE_OBJ))
+                self.words.append(self.Word(i, num, count , l, self.number, TRIE_OBJ))
                 count += l+1
 
         def printAll(self):

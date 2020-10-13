@@ -8,7 +8,7 @@ def main():
     doc = None
 
     # reading an inputing the file
-    with open("test.txt", "r") as t:
+    with open("test1.txt", "r") as t:
         text = t.read()
         print(text)
         # ob_text = FullText(text, ob_trie)
@@ -28,10 +28,13 @@ def main():
         print("Query",(i+1),": ", end="")
         q = input()
         res = doc.search(q)
-        if res[0]:
-            print("Node exists . Number of ending : ", res[1])
+        if len(res):
+            print("Node exists . Addresses : " )
+            print("S.no.\tW.no.\tBeg.\tEnd")
+            for i in res:
+                print(i[0], i[1], i[2], i[3])
         else:
-            print("Node doesn't even exist")
+            print("Node doesn't exist")
 
     print("Number of autocomplete queries : ", end = "")
     n = int(input())
