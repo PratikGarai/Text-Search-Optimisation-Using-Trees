@@ -14,8 +14,20 @@ def test(f_name, s_queries, a_queries):
     with open(f_name, "r") as t:
         text = t.read()
         # print(text)
+        t_doc_beg = time.time_ns()
         doc = Document(text)
+        t_doc_end = time.time_ns()
+        t_lin_beg = time.time_ns()
         lin = LinearModel(text)
+        t_lin_end = time.time_ns()
+
+        print("\nTime to setup : ")
+        print("Document model : ", t_doc_end-t_doc_beg)
+        print("Linear model   : ", t_lin_end-t_lin_beg)
+        print("\nDocument stats : ")
+        print("Lines  :  ", len(text.split("\n")))
+        print("Words  :  ", len(text.split()))
+        print("\n")
 
     # validation of structure construction
     # print("\n Text Added! Now launching printAll() \n")
