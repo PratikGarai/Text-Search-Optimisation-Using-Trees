@@ -25,3 +25,25 @@ class LinearModel():
                     c += 1
                     address.append([l,w,beg-le,beg])
         return address
+    
+    def suggester(self, substring):
+        suggestions = []
+        ind = 0
+        possible = False
+        s = ''
+        for i in self.text :
+            if possible :
+                if i==' ' or i=='\n':
+                    suggestions.append(s)
+                    possible = False
+                    s = ''
+                else :
+                    s += i
+            else :
+                if i==' ' or i=='\n':
+                    s = ''
+                else :
+                    s += i
+                if s==substring:
+                    possible = True
+        return list(set(suggestions))

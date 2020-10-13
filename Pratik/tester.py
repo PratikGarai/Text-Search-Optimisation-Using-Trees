@@ -35,30 +35,45 @@ def test(f_name, s_queries, a_queries):
         else:
             print("Node doesn't exist")
 
+    def autocomplete_results_printer(res):
+        if res==[]:
+            print("No suggestions")
+        else:
+            print("Num.\tSuggestion")
+            for num, i in enumerate(res):
+                print(num+1,i,sep="\t")
+
     print("Search queries : ")
     for i in s_queries:
         print("Query : ", i)
         print("Document model results\n------------")
-        a = time.time()
+        a = time.time_ns()
         res1 = doc.search(i)
-        b = time.time()
+        b = time.time_ns()
         search_results_printer(res1)
         print("Time : ",b-a)
         print("\nLinear model results\n------------")
-        c = time.time()
+        c = time.time_ns()
         res2 = lin.search(i)
-        d = time.time()
+        d = time.time_ns()
         search_results_printer(res2)
         print("Time : ",d-c)
 
     print("\n-----\nAutocomplete queries : ")
     for i in a_queries:
         print("Query : ", i)
-        res = doc.suggestions(i)
-        if res!=[]:
-            print("Suggestions ", res)
-        else:
-            print("No suggestions")
+        print("Document model results\n------------")
+        e = time.time_ns()
+        res1 = doc.suggestions(i)
+        f = time.time_ns()
+        autocomplete_results_printer(res1)
+        print("Time : ",f-e)
+        print("\nLinear model results\n------------")
+        g = time.time_ns()
+        res2 = lin.suggester(i)
+        h = time.time_ns()
+        autocomplete_results_printer(res2)
+        print("Time : ",h-g)
 
     # for the purpose of storage comparison
     return [lin, doc]
@@ -72,13 +87,14 @@ class Test():
         self.objs = None
 
     def conduct(self):
+        print("\n--------------------------------\n",self.name,"\n--------------------------------")
         self.objs = test(self.file_name, self.s_queries, self.a_queries)
         print("\n--------------------------------\n")
 
 if __name__=='__main__':
-    t1 = Test("Test 1", "test1.txt", ["something"], ["someth"])
-    t2 = Test("Test 2", "test2.txt", ["something"], ["someth"])
-    t3 = Test("Test 3", "test3.txt", ["something"], ["someth"])
+    t1 = Test("Test 1", "test1.txt", ["something"], ["some"])
+    t2 = Test("Test 2", "test2.txt", ["something"], ["some"])
+    t3 = Test("Test 3", "test3.txt", ["something"], ["some"])
 
     t1.conduct()
     t2.conduct()
