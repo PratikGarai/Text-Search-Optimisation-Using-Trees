@@ -1,9 +1,8 @@
-from Content import FullText
-from Trie import Trie
 from Document import Document
 from LinearModel import LinearModel
 import time
-from pympler import asizeof
+# from pympler import asizeof
+import tracemalloc
 
 def test(f_name, s_queries, a_queries):
 
@@ -28,9 +27,9 @@ def test(f_name, s_queries, a_queries):
         print("\nTime to setup : ")
         print("Document model : ", (t_doc_end-t_doc_beg)/10**9,"s")
         print("Linear model   : ", (t_lin_end-t_lin_beg),"ns")
-        print("\nSize of objects in memory : ")
-        print("Document model : ", asizeof.asizeof(doc)/(1024*1024),"MB")
-        print("Linear model   : ", asizeof.asizeof(lin)/(1024*1024),"MB")
+        # print("\nSize of objects in memory : ")
+        # print("Document model : ", asizeof.asizeof(doc)/(1024*1024),"MB")
+        # print("Linear model   : ", asizeof.asizeof(lin)/(1024*1024),"MB")
         print("\n")
 
     # validation of structure construction
@@ -103,9 +102,13 @@ class Test():
         self.objs = None
 
     def conduct(self):
+        tracemalloc.start()
         print("\n--------------------------------\n",self.name,"\n--------------------------------")
         # self.objs = test(self.file_name, self.s_queries, self.a_queries)
         test(self.file_name, self.s_queries, self.a_queries)
+        current, peak = tracemalloc.get_traced_memory()
+        print(f"Peak RAM usage was {peak / 10**6}MB")
+        tracemalloc.stop()
         print("\n--------------------------------\n")
 
 if __name__=='__main__':
