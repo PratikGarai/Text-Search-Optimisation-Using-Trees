@@ -1,4 +1,4 @@
-import Document from Document
+from  Document import Document
 import time
 
 def main():

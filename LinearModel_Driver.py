@@ -1,4 +1,4 @@
-import LinearModel from LinearModel
+from LinearModel import LinearModel
 import time
 
 def main():
@@ -40,7 +40,7 @@ def main():
         print("Enter the",(i+1),"query : ", end="")
         q = input()
         a = time.time_ns()
-        res = lin.serarch(q)
+        res = lin.search(q)
         b = time.time_ns()
         print("\nResults :")
         search_results_printer(res)
