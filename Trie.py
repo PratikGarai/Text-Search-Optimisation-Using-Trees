@@ -25,7 +25,7 @@ class Trie():
         current = self.head
         for i in word :
             current = current.moveToChild(i)
-        current.addAddress(word_pointer)
+            current.addAddress(word_pointer)
 
     def findLocations(self, word):
         current = self.head
@@ -34,7 +34,8 @@ class Trie():
                 current = current.children[i]
             except :
                 return (False,[], None)
-        return (True, self.get_terminals(current), current)
+        # return (True, self.get_terminals(current), current)
+        return (True, current.addresses, current)
 
     def getAutoCompleteSuggestions(self, word):
         res = self.findLocations(word)

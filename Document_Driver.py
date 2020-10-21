@@ -17,10 +17,11 @@ def main():
     # printer methods
     def search_results_printer(res):
         if len(res):
+            res, l = res[0], res[1]
             print("Node exists . Addresses : " )
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
-                print(i[0], i[1], i[2], i[3], sep='\t')
+                print(i.s_number, i.number, i.address_begin, i.address_begin+l, sep='\t')
         else:
             print("Node doesn't exist")
 

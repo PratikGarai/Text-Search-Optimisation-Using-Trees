@@ -43,6 +43,16 @@ def test(f_name, s_queries, a_queries):
 
     def search_results_printer(res):
         if len(res):
+            res,l = res[0], res[1]
+            print("Node exists . Addresses : " )
+            print("S.no.\tW.no.\tBeg.\tEnd")
+            for i in res:
+                print(i.s_number, i.number, i.address_begin, i.address_begin+l, sep='\t')
+        else:
+            print("Node doesn't exist")
+
+    def linear_search_results_printer(res):
+        if len(res):
             print("Node exists . Addresses : " )
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
@@ -71,7 +81,7 @@ def test(f_name, s_queries, a_queries):
         c = time.time_ns()
         res2 = lin.search(i)
         d = time.time_ns()
-        search_results_printer(res2)
+        linear_search_results_printer(res2)
         print("Time : ",(d-c)/10**9,"s")
 
     print("\n-----\nAutocomplete queries : ")

@@ -18,16 +18,14 @@ class Document():
 
     def search(self, word):
         res = self.ob_trie.findLocations(word)
-        tup_list = []
         if res[0]:
             l = len(word)
-            for i in res[1]:
-                tup_list.append((i.s_number , i.number, i.address_begin, i.address_begin+l))
-            return tup_list
+            return (res[1],l)
         else :
             return []
 
 
     def suggestions(self, substring):
         res = self.ob_trie.getAutoCompleteSuggestions(substring)
+        res = list(set(res))
         return res
