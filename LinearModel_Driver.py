@@ -21,6 +21,7 @@ def main():
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
                 print(i[0], i[1], i[2], i[3], sep='\t')
+            print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
 
@@ -31,6 +32,7 @@ def main():
             print("Num.\tSuggestion")
             for num, i in enumerate(res):
                 print(num+1,i,sep="\t")
+            print(len(res),"results fetched.")
 
 
     # user inputs

@@ -34,20 +34,13 @@ class Trie():
                 current = current.children[i]
             except :
                 return (False,[], None)
-        # return (True, self.get_terminals(current), current)
         return (True, current.addresses, current)
 
     def getAutoCompleteSuggestions(self, word):
         res = self.findLocations(word)
         if not res[0]:
             return []
-        nodes = [res[2]]
-        suggestions = []
-        while nodes!=[]:
-            node = nodes.pop(0)
-            if node.addresses!=[] :
-                suggestions.append(node.addresses[0].content)
-            nodes.extend(node.children.values())
+        suggestions = set([i.content for i in res[1]])
         return suggestions
 
     def get_terminals(self, ob):

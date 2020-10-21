@@ -48,6 +48,7 @@ def test(f_name, s_queries, a_queries):
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
                 print(i.s_number, i.number, i.address_begin, i.address_begin+l, sep='\t')
+            print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
 
@@ -57,6 +58,7 @@ def test(f_name, s_queries, a_queries):
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
                 print(i[0], i[1], i[2], i[3], sep='\t')
+            print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
 
@@ -67,6 +69,7 @@ def test(f_name, s_queries, a_queries):
             print("Num.\tSuggestion")
             for num, i in enumerate(res):
                 print(num+1,i,sep="\t")
+            print(len(res),"results fetched.")
 
     print("Search queries : ")
     for i in s_queries:
@@ -125,7 +128,9 @@ if __name__=='__main__':
     t1 = Test("Test 1 : 4 lines ", "test1.txt", ["something"], ["some"])
     t2 = Test("Test 2 : King James Bible", "test2.txt", ["something"], ["some"])
     t3 = Test("Test 3 : World Factbook 1992 README", "test3.txt", ["something"], ["some"])
+    t4 = Test("Test 4 : King James Bible x3 ", "test4.txt", ["something"], ["some"])
 
     t1.conduct()
     t2.conduct()
     t3.conduct()
+    t4.conduct()

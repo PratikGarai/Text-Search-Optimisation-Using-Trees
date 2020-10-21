@@ -27,5 +27,4 @@ class Document():
 
     def suggestions(self, substring):
         res = self.ob_trie.getAutoCompleteSuggestions(substring)
-        res = list(set(res))
         return res
