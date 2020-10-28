@@ -25,7 +25,7 @@ def test(f_name, s_queries, a_queries):
         print("Lines  :  ", len(text.split("\n")))
         print("Words  :  ", len(text.split()))
         print("\nTime to setup : ")
-        print("Document model : ", (t_doc_end-t_doc_beg)/10**9,"s")
+        print("Document model : ", (t_doc_end-t_doc_beg),"ns")
         print("Linear model   : ", (t_lin_end-t_lin_beg),"ns")
         # print("\nSize of objects in memory : ")
         # print("Document model : ", asizeof.asizeof(doc)/(1024*1024),"MB")
@@ -85,7 +85,7 @@ def test(f_name, s_queries, a_queries):
         res2 = lin.search(i)
         d = time.time_ns()
         linear_search_results_printer(res2)
-        print("Time : ",(d-c)/10**9,"s")
+        print("Time : ",(d-c),"ns")
 
     print("\n-----\nAutocomplete queries : ")
     for i in a_queries:
@@ -101,7 +101,7 @@ def test(f_name, s_queries, a_queries):
         res2 = lin.suggester(i)
         h = time.time_ns()
         autocomplete_results_printer(res2)
-        print("Time : ",(h-g)/10**9,"s")
+        print("Time : ",(h-g),"ns")
 
     # for the purpose of storage comparison
     # return [lin, doc]
@@ -128,9 +128,9 @@ if __name__=='__main__':
     t1 = Test("Test 1 : 4 lines ", "test1.txt", ["something"], ["some"])
     t2 = Test("Test 2 : King James Bible", "test2.txt", ["something"], ["some"])
     t3 = Test("Test 3 : World Factbook 1992 README", "test3.txt", ["something"], ["some"])
-    t4 = Test("Test 4 : King James Bible x3 ", "test4.txt", ["something"], ["some"])
+    # t4 = Test("Test 4 : King James Bible x3 ", "test4.txt", ["something"], ["some"])
 
     t1.conduct()
     t2.conduct()
     t3.conduct()
-    t4.conduct()
+    # t4.conduct()
