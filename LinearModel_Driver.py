@@ -1,5 +1,6 @@
 from LinearModel import LinearModel
 import time
+import pickle
 
 def main():
 
@@ -63,6 +64,16 @@ def main():
         if inp=='y' or inp=='Y':
             print("\nResults :")
             autocomplete_results_printer(res)
+
+    print("\nDo you want to save this model? (y for yes else no)")
+    inp = input()
+    if inp=='y' or inp=='Y':
+        print("Enter your prefereed name for the object : ", end = "")
+        name = input()
+        a = time.time_ns()
+        pickle.dump(lin, open( name+".p", "wb"))
+        b = time.time_ns()
+        print("Model saved in : ",(b-a),"ns")
 
 if __name__=='__main__':
     main()
