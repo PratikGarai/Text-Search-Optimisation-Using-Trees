@@ -8,12 +8,32 @@ def main():
     lin = None
 
     # setups
-    with open(FILE_NAME, "r") as t :
-        text = t.read()
-        a = time.time_ns()
-        lin = LinearModel(text)
-        b = time.time_ns()
-        print("Model initialised in : ",(b-a),"s")
+    print("Load earlier model or use new one? (l to load else use new)")
+    inp = input()
+    if inp=='l' or inp=='L':
+        try :
+            print("Enter the name of the save file : ", end = "")
+            name = input()
+            a = time.time_ns()
+            lin = pickle.load(open( name+".p", "rb"))
+            b = time.time_ns()
+            assert type(lin)==type(LinearModel(""))
+            print("Model loaded in : ",(b-a),"ns")
+        except : 
+            print("Error opening model, creating new one")
+            with open(FILE_NAME, "r") as t :
+                text = t.read()
+                a = time.time_ns()
+                lin = LinearModel(text)
+                b = time.time_ns()
+                print("Model initialised in : ",(b-a),"ns")
+    else :
+        with open(FILE_NAME, "r") as t :
+            text = t.read()
+            a = time.time_ns()
+            lin = LinearModel(text)
+            b = time.time_ns()
+            print("Model initialised in : ",(b-a),"ns")
 
     # printer methods
     def search_results_printer(res):
@@ -68,7 +88,7 @@ def main():
     print("\nDo you want to save this model? (y for yes else no)")
     inp = input()
     if inp=='y' or inp=='Y':
-        print("Enter your prefereed name for the object : ", end = "")
+        print("Enter your preferred name for the save file : ", end = "")
         name = input()
         a = time.time_ns()
         pickle.dump(lin, open( name+".p", "wb"))
