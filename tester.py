@@ -46,8 +46,8 @@ def test(f_name, s_queries, a_queries):
             res,l = res[0], res[1]
             print("Node exists . Addresses : " )
             print("S.no.\tW.no.\tBeg.\tEnd")
-            for i in res:
-                print(i.s_number, i.number, i.address_begin, i.address_begin+l, sep='\t')
+            # for i in res:
+            #     print(i.s_number, i.number, i.address_begin, i.address_begin+l, sep='\t')
             print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
@@ -56,8 +56,8 @@ def test(f_name, s_queries, a_queries):
         if len(res):
             print("Node exists . Addresses : " )
             print("S.no.\tW.no.\tBeg.\tEnd")
-            for i in res:
-                print(i[0], i[1], i[2], i[3], sep='\t')
+            # for i in res:
+            #     print(i[0], i[1], i[2], i[3], sep='\t')
             print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
@@ -67,8 +67,8 @@ def test(f_name, s_queries, a_queries):
             print("No suggestions")
         else:
             print("Num.\tSuggestion")
-            for num, i in enumerate(res):
-                print(num+1,i,sep="\t")
+            # for num, i in enumerate(res):
+            #     print(num+1,i,sep="\t")
             print(len(res),"results fetched.")
 
     print("Search queries : ")
@@ -115,19 +115,19 @@ class Test():
         self.objs = None
 
     def conduct(self):
-        tracemalloc.start()
+        # tracemalloc.start()
         print("\n--------------------------------\n",self.name,"\n--------------------------------")
         # self.objs = test(self.file_name, self.s_queries, self.a_queries)
         test(self.file_name, self.s_queries, self.a_queries)
-        current, peak = tracemalloc.get_traced_memory()
-        print(f"Peak RAM usage was {peak / 10**6}MB")
-        tracemalloc.stop()
+        # current, peak = tracemalloc.get_traced_memory()
+        # print(f"Peak RAM usage was {peak / 10**6}MB")
+        # tracemalloc.stop()
         print("\n--------------------------------\n")
 
 if __name__=='__main__':
-    t1 = Test("Test 1 : 4 lines ", "test1.txt", ["something"], ["some"])
-    t2 = Test("Test 2 : King James Bible", "test2.txt", ["something"], ["some"])
-    t3 = Test("Test 3 : World Factbook 1992 README", "test3.txt", ["something"], ["some"])
+    t1 = Test("Test 1 : 4 lines ", "test1.txt", ["the","something"], ["the","some"])
+    t2 = Test("Test 2 : King James Bible", "test2.txt", ["the","something"], ["the","some"])
+    t3 = Test("Test 3 : World Factbook 1992 README", "test3.txt", ["the","something"], ["the","some"])
     # t4 = Test("Test 4 : King James Bible x3 ", "test4.txt", ["something"], ["some"])
 
     t1.conduct()

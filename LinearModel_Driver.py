@@ -21,7 +21,6 @@ def main():
             print("S.no.\tW.no.\tBeg.\tEnd")
             for i in res:
                 print(i[0], i[1], i[2], i[3], sep='\t')
-            print(len(res),"results fetched.")
         else:
             print("Node doesn't exist")
 
@@ -32,11 +31,10 @@ def main():
             print("Num.\tSuggestion")
             for num, i in enumerate(res):
                 print(num+1,i,sep="\t")
-            print(len(res),"results fetched.")
 
 
     # user inputs
-    print("Enter the number of search queries : ", end="")
+    print("\nEnter the number of search queries : ", end="")
     n_searches  = int(input())
     for i in range(n_searches):
         print("Enter the",(i+1),"query : ", end="")
@@ -44,11 +42,14 @@ def main():
         a = time.time_ns()
         res = lin.search(q)
         b = time.time_ns()
-        print("\nResults :")
-        search_results_printer(res)
-        print("\nResults fetched in :",(b-a)/10**9,"s")
+        print("\n",len(res),"results fetched in :",(b-a),"ns")
+        print("Do you want to print the results? (y for yes, else no)")
+        inp = input()
+        if inp=='y' or inp=='Y':
+            print("\nResults :")
+            search_results_printer(res)
 
-    print("Enter the number of autocomplete queries : ", end="")
+    print("\nEnter the number of autocomplete queries : ", end="")
     n_searches  = int(input())
     for i in range(n_searches):
         print("Enter the",(i+1),"query : ", end="")
@@ -56,9 +57,12 @@ def main():
         a = time.time_ns()
         res = lin.suggester(q)
         b = time.time_ns()
-        print("\nResults :")
-        autocomplete_results_printer(res)
-        print("\nResults fetched in :",(b-a)/10**9,"s")
+        print("\n",len(res),"results fetched in :",(b-a),"ns")
+        print("Do you want to print the results? (y for yes, else no)")
+        inp = input()
+        if inp=='y' or inp=='Y':
+            print("\nResults :")
+            autocomplete_results_printer(res)
 
 if __name__=='__main__':
     main()
